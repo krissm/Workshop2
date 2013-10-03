@@ -7,7 +7,6 @@ class DatabaseHandler {
 	 */
 	private $db = null;
 	private $stmt = null;
-	private static $numQueries = 0;
 	private static $queries = array();
 
 
@@ -28,10 +27,6 @@ class DatabaseHandler {
 	}
 
 
-	/**
-	 * Getters
-	 */
-	public function GetNumQueries() { return self::$numQueries; }
 	public function GetQueries() { return self::$queries; }
 
 
@@ -56,15 +51,6 @@ class DatabaseHandler {
 		self::$numQueries++;
 		return $this->stmt->execute($params);
 	}
-
-
-	/**
-	 * Return last insert id.
-	 */
-	public function LastInsertId() {
-		return $this->db->lastInsertid();
-	}
-
 
 	/**
 	 * Return rows affected of last INSERT, UPDATE, DELETE
