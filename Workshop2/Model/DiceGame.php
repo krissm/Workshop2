@@ -1,18 +1,22 @@
 <?php
 require_once 'Die.php';
+require_once('/../DatabaseHandler.php');
+
 
 class DiceGame{
 	private $die1;
 	private $die2;
 	private $db;
+	private $dbPath;
 	//private $listGameObserver;
 
 	public function __construct(){
 		$this->die1 = new Di();
 		$this->die2 = new Di();
 		// Create a database object.
-		$this->db = new DatabaseHandler('sqlite: data/.ht.sqlite');
-
+		$dbPath = dirname(__file__) . "Model/Data/W1.sqlite";
+		$this->db = new DatabaseHandler('sqlite:$dbPath');
+		$this->Init();
 	}
 
 	public function RegisterListener(){
@@ -21,7 +25,9 @@ class DiceGame{
 
 	public function PlayGame(){
 		$this->die1->Roll();
-		return $this->die1->GetValue();
+		$roll = $this->die1->GetValue();
+		$this->Add($roll);
+		return $roll;
 	}
 
 	public function GetDieValue(){
@@ -29,11 +35,11 @@ class DiceGame{
 	}
 
 	public function Init() {
-		$this->db->ExecuteQuery("CREATE TABLE IF NOT EXISTS RollHistory (id INTEGER PRIMARY KEY, die1 INTEGER, die2 INTEGER, created DATETIME default (datetime('now')));");
+		$this->db->ExecuteQuery("CREATE TABLE IF NOT EXISTS RollHistory (id INTEGER PRIMARY KEY AUTOINCREMENT, die1 INTEGER, die2 INTEGER, created DATETIME default (datetime('now')));");
 	}
 
 	public function Add($entry) {
-		$this->db->ExecuteQuery('INSERT INTO RollHistory (entry) VALUES (?);', array($entry));
+		$this->db->ExecuteQuery('INSERT INTO RollHistory (die1) VALUES (?);', array($entry));
 	}
 
 	public function DeleteAll() {
