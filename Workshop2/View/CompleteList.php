@@ -1,4 +1,5 @@
-<h1>Compact List</h1>
+<h1>Complete List</h1>
+
 <!--
 <form action="<?=$form_action?>" method='post'>
 <p>
