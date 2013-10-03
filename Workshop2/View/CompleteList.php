@@ -15,14 +15,17 @@
 <th>ID:</th>
 <th>Name:</th>
 <th>Personal Number:</th>
-<th>Number of Boats:</th>
+<th>Date Created:</th>
 </tr>
 
 <!--populate a table with the content of the database columns-->
   <?php foreach($entries as $val): ?>
 
   <tr>
-	<td><?php echo $val; ?></td>
+	<td><?php echo $val['id']; ?></td>
+	<td><?php echo $val['name']; ?></td>
+	<td><?php echo $val['pn']; ?></td>
+	<td><?php echo $val['created']; ?></td>
   </tr>
 
   <?php endforeach; ?>
