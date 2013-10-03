@@ -1,5 +1,8 @@
 <?php
 require_once 'Controller/MembershipController.php';
-$dicegame = new DiceGame();
-echo $dicegame->PlayGame();
-echo "test4";
+
+$membershipController = new MembershipController();
+
+$entries = $membershipController->ReadAllMembers();
+
+require_once 'View/CompleteList.php';

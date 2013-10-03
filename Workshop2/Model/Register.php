@@ -24,7 +24,7 @@ class Register{
 		$this->db->ExecuteQuery('DELETE FROM MemberRegister WHERE id=(?);', $entry);
 	}
 
-	public function ReadAll() {
+	public function ReadAllMembers() {
 		return $this->db->ExecuteSelectQueryAndFetchAll('SELECT * FROM MemberRegister ORDER BY id DESC;');
 	}
 	

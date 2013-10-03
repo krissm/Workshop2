@@ -13,18 +13,18 @@ class MembershipController{
 	}
 	
 	public function DeleteMember($entry) {
-		$this->db->ExecuteQuery('DELETE FROM MemberRegister WHERE id=(?);', $entry);
+		$this->membershipRegister->DeleteMember($entry);
 	}
 	
-	public function ReadAll() {
-		return $this->db->ExecuteSelectQueryAndFetchAll('SELECT * FROM MemberRegister ORDER BY id DESC;');
+	public function ReadAllMembers() {
+		return $this->membershipRegister->ReadAllMembers();
 	}
 	
 	public function ReadMember($entry) {
-		return $this->db->ExecuteSelectQueryAndFetchAll('SELECT * FROM MemberRegister WHERE id=(?);', $entry);
+		return $this->membershipRegister->ReadMember($entry);
 	}
 	
 	public function EditMember($entry) {
-		$this->db->ExecuteQuery('UPDATE MemberRegister SET ............WHERE id=(?);', $entry);
+		$this->membershipRegister->EditMember($entry);
 	}
 }
