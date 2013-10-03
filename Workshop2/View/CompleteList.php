@@ -1,5 +1,5 @@
 <h1>Compact List</h1>
-
+<!--
 <form action="<?=$form_action?>" method='post'>
 <p>
 <input type='submit' name='CreateMember' value='Create Member' />
@@ -7,6 +7,7 @@
 <input type='submit' name='DeleteMember' value='DeleteMember' />
 </p>
 </form>
+-->
 
 <h1>Members</h1>
 <table>
