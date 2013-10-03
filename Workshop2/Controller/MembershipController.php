@@ -1,11 +1,11 @@
 <?php
-require_once '../Model/Register.php';
+require_once '/../Model/Register.php';
 
 class MembershipController{
 	private $membershipRegister;
 	
 	public function __construct(){
-		$membershipRegister = new Register();
+		$this->membershipRegister = new Register();
 	}
 	
 	public function AddMember($entry) {

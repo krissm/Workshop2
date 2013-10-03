@@ -36,7 +36,6 @@ class DatabaseHandler {
 	public function ExecuteSelectQueryAndFetchAll($query, $params=array()){
 		$this->stmt = $this->db->prepare($query);
 		self::$queries[] = $query;
-		self::$numQueries++;
 		$this->stmt->execute($params);
 		return $this->stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
@@ -48,7 +47,6 @@ class DatabaseHandler {
 	public function ExecuteQuery($query, $params = array()) {
 		$this->stmt = $this->db->prepare($query);
 		self::$queries[] = $query;
-		self::$numQueries++;
 		return $this->stmt->execute($params);
 	}
 
