@@ -1,34 +1,45 @@
-<h1>Complete List</h1>
+<?php
+//populate a table with the content of the database columns-->
+foreach($entries as $val):
 
-<!--
-<form action="<?=$form_action?>" method='post'>
-<p>
-<input type='submit' name='CreateMember' value='Create Member' />
-<input type='submit' name='EditMember' value='Edit Member' />
-<input type='submit' name='DeleteMember' value='DeleteMember' />
-</p>
-</form>
--->
+$rows = <<<EOD
+  "<tr>
+	<td>{$val}</td>
+	<td>
+		<form>
+			<input type='submit' name='ViewMember' value='View/Edit'/>
+			<input type='submit' name='DeleteMember' value='Delete'/>
+		</form>
+	</td>
+  </tr>"
+EOD;
+endforeach;
 
-<h1>Members</h1>
+$CompleteList = <<<EOD
+
 <table>
 <caption><em>Show All Members</em></caption>
 <tr>
 <th>ID:</th>
 <th>Name:</th>
 <th>Personal Number:</th>
-<th>Date Created:</th>
+<th>Number of Boats:</th>
+<th>Actions:</th>
 </tr>
-
-<!--populate a table with the content of the database columns-->
-  <?php foreach($entries as $val): ?>
-
-  <tr>
-	<td><?php echo $val['id']; ?></td>
-	<td><?php echo $val['name']; ?></td>
-	<td><?php echo $val['pn']; ?></td>
-	<td><?php echo $val['created']; ?></td>
-  </tr>
-
-  <?php endforeach; ?>
+{$rows}
 </table>
+EOD;
+
+
+
+
+
+?>
+
+<h2>Members</h2>
+
+<form action="">
+<input type="radio" name="listTypes" value="CompactList" checked> Compact View
+<input type="radio" name="listTypes" value="CompleteList">Complete View<br>
+</form>
+<?php echo $CompleteList?>
