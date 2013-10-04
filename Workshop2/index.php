@@ -1,9 +1,9 @@
 <?php
-require_once 'Controller/MembershipController.php';
+require_once 'Controller/Controller.php';
 
-$membershipController = new MembershipController();
+$controller = new Controller();
 
-$membershipController->Event();
+$controller->Event();
 
 
 /*

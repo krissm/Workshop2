@@ -22,23 +22,28 @@ class Register{
 		$this->db->ExecuteQuery('INSERT INTO MemberRegister (name, pn) VALUES (?);', array($entry));
 	}
 	
-	public function AddBoat($entry) {
-		$this->db->ExecuteQuery('INSERT INTO BoatRegister (mId, type, length) VALUES (?);', array($entry));
-	}
-
 	public function DeleteMember($entry) {
 		$this->db->ExecuteQuery('DELETE FROM MemberRegister WHERE id=(?);', $entry);
 	}
-
-	public function ReadAllMembers() {
-		return $this->db->ExecuteSelectQueryAndFetchAll('SELECT * FROM MemberRegister ORDER BY id DESC;');
+	
+	public function EditMember($entry) {
+		$this->db->ExecuteQuery('UPDATE MemberRegister SET ............WHERE id=(?);', $entry);
 	}
 	
 	public function ReadMember($entry) {
 		return $this->db->ExecuteSelectQueryAndFetchAll('SELECT * FROM MemberRegister WHERE id=(?);', $entry);
 	}
 	
-	public function EditMember($entry) {
-		$this->db->ExecuteQuery('UPDATE MemberRegister SET ............WHERE id=(?);', $entry);
+	public function AddBoat($entry) {
+		$this->db->ExecuteQuery('INSERT INTO BoatRegister (mId, type, length) VALUES (?);', array($entry));
 	}
+	
+
+	public function ReadAllMembers() {
+		return $this->db->ExecuteSelectQueryAndFetchAll('SELECT * FROM MemberRegister ORDER BY id DESC;');
+	}
+	
+	
+	
+	
 }
