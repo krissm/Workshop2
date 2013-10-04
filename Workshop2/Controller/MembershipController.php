@@ -8,8 +8,30 @@ class MembershipController{
 		$this->membershipRegister = new Register();
 	}
 	
+	public function Event(){
+		if (isset($_POST['AddNewMember'])){
+			require_once 'View/Member.php';
+		}
+		
+		if (isset($_POST['AddMember'])){
+			$entry = array($_POST['name'], $_POST['pn']);
+			$this->membershipRegister->AddMember($entry);
+		}
+		
+		$entries = $this->membershipRegister->ReadAllMembers();
+		
+		require_once 'View/CompleteList.php';
+		
+	}
+	
+	
+	/*
 	public function AddMember($entry) {
 		$this->membershipRegister->AddMember($entry); 
+	}
+	
+	public function AddBoat($entry) {
+		$this->membershipRegister->AddBoat($entry);
 	}
 	
 	public function DeleteMember($entry) {
@@ -27,4 +49,5 @@ class MembershipController{
 	public function EditMember($entry) {
 		$this->membershipRegister->EditMember($entry);
 	}
+	*/
 }

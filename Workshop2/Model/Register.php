@@ -1,7 +1,9 @@
 <?php
 require_once('/../DatabaseHandler.php');
+require_once 'Member.php';
 
 class Register{
+	private $members;
 	private $db;
 	private $dbPath;
 
@@ -13,11 +15,15 @@ class Register{
 
 	public function Init() {
 		$this->db->ExecuteQuery("CREATE TABLE IF NOT EXISTS MemberRegister (id INTEGER PRIMARY KEY AUTOINCREMENT, name string, pn string, created DATETIME default (datetime('now')));");
-		$this->db->ExecuteQuery("CREATE TABLE IF NOT EXISTS BoatRegister (id INTEGER PRIMARY KEY AUTOINCREMENT, name string, pn string, created DATETIME default (datetime('now')));");
+		$this->db->ExecuteQuery("CREATE TABLE IF NOT EXISTS BoatRegister (id INTEGER PRIMARY KEY AUTOINCREMENT, mId, type string, length float, created DATETIME default (datetime('now')));");
 	}
 
 	public function AddMember($entry) {
 		$this->db->ExecuteQuery('INSERT INTO MemberRegister (name, pn) VALUES (?);', array($entry));
+	}
+	
+	public function AddBoat($entry) {
+		$this->db->ExecuteQuery('INSERT INTO BoatRegister (mId, type, length) VALUES (?);', array($entry));
 	}
 
 	public function DeleteMember($entry) {
