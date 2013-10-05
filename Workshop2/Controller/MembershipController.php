@@ -1,11 +1,11 @@
 <?php
 require_once '/../Model/Register.php';
 
-class MembershipController{
-	private $membershipRegister;
+class Controller{
+	private $register;
 	
 	public function __construct(){
-		$this->membershipRegister = new Register();
+		$this->register = new Register();
 	}
 	
 	public function Event(){
@@ -15,39 +15,39 @@ class MembershipController{
 		
 		if (isset($_POST['AddMember'])){
 			$entry = array($_POST['name'], $_POST['pn']);
-			$this->membershipRegister->AddMember($entry);
+			$this->register->AddMember($entry);
 		}
 		
-		$entries = $this->membershipRegister->ReadAllMembers();
+		$entries = $this->register->ReadAllMembers();
 		
-		require_once 'View/CompleteList.php';
+		require_once 'View/CompactList.php';
 		
 	}
 	
 	
 	/*
 	public function AddMember($entry) {
-		$this->membershipRegister->AddMember($entry); 
+		$this->register->AddMember($entry); 
 	}
 	
 	public function AddBoat($entry) {
-		$this->membershipRegister->AddBoat($entry);
+		$this->register->AddBoat($entry);
 	}
 	
 	public function DeleteMember($entry) {
-		$this->membershipRegister->DeleteMember($entry);
+		$this->register->DeleteMember($entry);
 	}
 	
 	public function ReadAllMembers() {
-		return $this->membershipRegister->ReadAllMembers();
+		return $this->register->ReadAllMembers();
 	}
 	
 	public function ReadMember($entry) {
-		return $this->membershipRegister->ReadMember($entry);
+		return $this->register->ReadMember($entry);
 	}
 	
 	public function EditMember($entry) {
-		$this->membershipRegister->EditMember($entry);
+		$this->register->EditMember($entry);
 	}
 	*/
 }
