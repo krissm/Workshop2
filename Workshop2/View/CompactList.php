@@ -1,33 +1,41 @@
-<h1>Compact List</h1>
+<?php
 
-<!--
-<form action="<?=$form_action?>" method='post'>
-<p>
-<input type='submit' name='CreateMember' value='Create Member' />
-<input type='submit' name='EditMember' value='Edit Member' />
-<input type='submit' name='DeleteMember' value='DeleteMember' />
-</p>
-</form>
--->
+$rows = "";
 
-<h1>Members</h1>
+foreach($entries as $val){
+	$rows .=
+
+	"<tr>
+	 <td> {$val['id']}  </td>
+	 <td> {$val['name']} </td>
+	 <td> {$val['pn']}   </td>
+	 <td> ????  </td>
+	 <td>
+ 		<form>
+ 			<input type='submit' name='ViewMember' value='View/Edit'/>
+ 			<input type='submit' name='DeleteMember' value='Delete'/>
+ 		</form>
+  	</td>
+	<tr>";
+}
+
+
+$CompleteList = <<<EOD
+
 <table>
 <caption><em>Show All Members</em></caption>
 <tr>
 <th>ID:</th>
 <th>Name:</th>
-<th>Date Created:</th>
+<th>Personal Number:</th>
+<th>Number of Boats:</th>
+<th></th>
 </tr>
-
-<!--populate a table with the content of the database columns-->
-  <?php foreach($entries as $val): ?>
-
-  <tr>
-	<td><?php echo $val['id']; ?></td>
-	<td><?php echo $val['name']; ?></td>
-	<td><?php echo $val['pn']; ?></td>
-	<td><?php echo $val['created']; ?></td>
-  </tr>
-
-  <?php endforeach; ?>
+{$rows}
 </table>
+EOD;
+
+//populate a table with the content of the database columns-->
+
+
+?>
