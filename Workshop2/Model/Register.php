@@ -19,7 +19,7 @@ class Register{
 	}
 
 	public function AddMember($entry) {
-		$this->db->ExecuteQuery('INSERT INTO MemberRegister (name, pn) VALUES (?);', array($entry));
+		$this->db->ExecuteQuery('INSERT INTO MemberRegister (name, pn) VALUES (?), (?);', array($entry));
 	}
 	
 	public function DeleteMember($entry) {
@@ -27,7 +27,7 @@ class Register{
 	}
 	
 	public function EditMember($entry) {
-		$this->db->ExecuteQuery('UPDATE MemberRegister SET ............WHERE id=(?);', $entry);
+		$this->db->ExecuteQuery('UPDATE MemberRegister SET name=(?), pn=(?)  WHERE id=(?);', $entry);
 	}
 	
 	public function ReadMember($entry) {
@@ -35,9 +35,12 @@ class Register{
 	}
 	
 	public function AddBoat($entry) {
-		$this->db->ExecuteQuery('INSERT INTO BoatRegister (mId, type, length) VALUES (?);', array($entry));
+		$this->db->ExecuteQuery('INSERT INTO BoatRegister (mId, type, length) VALUES (?), (?), (?);', array($entry));
 	}
 	
+	public function DeleteBoat($entry) {
+		$this->db->ExecuteQuery('DELETE FROM BoatRegister WHERE id=(?);', $entry);
+	}
 
 	public function ReadAllMembers() {
 		return $this->db->ExecuteSelectQueryAndFetchAll('SELECT * FROM MemberRegister ORDER BY id DESC;');

@@ -11,7 +11,7 @@ foreach($entries as $val){
 	 <td> {$val['pn']}   </td>
 	 <td> {$val['created']}   </td>
 	 <td>
- 		<form>
+ 		<form method='post'>
  			<input name='id' hidden value='{$val['id']}'/>
  			<input type='submit' name='ViewMember' value='View/Edit'/>
  			<input type='submit' name='DeleteMember' value='Delete'/>

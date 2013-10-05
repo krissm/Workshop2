@@ -16,19 +16,14 @@ class Controller{
 		}
 
 		if (isset($_POST['AddMember'])){
-			$entry = array($_POST['name'], $_POST['pn']);
+			$entry[] = strip_tags($_POST['name']);
+			$entry[] = strip_tags($_POST['pn']);
 			$this->register->AddMember($entry);
 		}
 		
 		if (isset($_POST['DeleteMember'])){
 			$entry = array($_POST['id']);
 			$this->register->DeleteMember($entry);
-		}
-		
-		if (isset($_POST['EditMember'])){
-			$entry = array($_POST['id']);
-			$this->register->EditMember($entry);
-			
 		}
 		
 		if (isset($_POST['ReadMember'])){
@@ -38,6 +33,33 @@ class Controller{
 			require_once '/../View/MemberDetails.php';
 			exit();
 		}
+		
+		if (isset($_POST['EditMember'])){
+			$entry[] = strip_tags($_POST['name']);
+			$entry[] = strip_tags($_POST['pn']);
+			$entry[] = strip_tags($_POST['id']);
+			$this->register->EditMember($entry);
+			//TODO: a for loop which loops until there are no more boats. use an increment variable after each post
+// 			if (isset($_POST['type'])){
+// 				$entry[] = strip_tags($_POST['id']);
+// 				$entry[] = strip_tags($_POST['type']);
+// 				$entry[] = strip_tags($_POST['length']);
+// 				$this->register->AddBoat($entry);
+// 			}	
+		}
+		
+		if (isset($_POST['AddNewBoat'])){
+			require_once 'View/BoatForm.php';
+			exit();
+		}
+		
+		if (isset($_POST['AddBoat'])){
+			$entry[] = strip_tags($_POST['id']);
+			$entry[] = strip_tags($_POST['type']);
+			$entry[] = strip_tags($_POST['length']);
+			$this->register->AddBoat($entry);
+		}
+		
 
 		$entries = $this->register->ReadAllMembers();
 
