@@ -1,6 +1,6 @@
 
 <form>
-<fieldset></fieldset>
+<fieldset>Membership</fieldset>
 
 	<label for="id">Membership ID</label>
 	<input type="text" name="id">
@@ -17,8 +17,6 @@
 	<label for="pn">Persomal Number</label>
 	<input type="text" name="pn">
 
-	<ol>
-		<li></li>
-	</ol>
 
 </form>
+</body>
