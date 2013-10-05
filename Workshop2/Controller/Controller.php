@@ -11,7 +11,8 @@ class Controller{
 
 	public function Event(){
 		if (isset($_POST['AddNewMember'])){
-			require_once 'View/Member.php';
+			require_once 'View/MemberDetails.php';
+			exit();
 		}
 
 		if (isset($_POST['AddMember'])){
@@ -27,13 +28,15 @@ class Controller{
 		if (isset($_POST['EditMember'])){
 			$entry = array($_POST['id']);
 			$this->register->EditMember($entry);
+			
 		}
 		
 		if (isset($_POST['ReadMember'])){
 			$entry = array($_POST['id']);
 			$memberDetails = $this->register->ReadMember($entry);
 			//TODO: connect $memberDetails to some kind of view
-			require_once '/../View/ViewMember.php';
+			require_once '/../View/MemberDetails.php';
+			exit();
 		}
 
 		$entries = $this->register->ReadAllMembers();

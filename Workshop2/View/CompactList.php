@@ -6,12 +6,13 @@ foreach($entries as $val){
 	$rows .=
 
 	"<tr>
-	 <td> {$val['id']}  </td>
+	 <td> {$val['id']}   </td>
 	 <td> {$val['name']} </td>
 	 <td> {$val['pn']}   </td>
-	 <td> ????  </td>
+	 <td> {$val['created']}   </td>
 	 <td>
  		<form>
+ 			<input name='id' hidden value='{$val['id']}'/>
  			<input type='submit' name='ViewMember' value='View/Edit'/>
  			<input type='submit' name='DeleteMember' value='Delete'/>
  		</form>
@@ -28,7 +29,7 @@ $CompleteList = <<<EOD
 <th>ID:</th>
 <th>Name:</th>
 <th>Personal Number:</th>
-<th>Number of Boats:</th>
+<th>Member Since:</th>
 <th></th>
 </tr>
 {$rows}
