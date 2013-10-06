@@ -60,18 +60,15 @@ class Controller{
 			$this->register->AddBoat($entry);
 		}
 		
-
 		$entries = $this->register->ReadAllMembers();
-		
-		require_once '/../View/CompleteList.php';
-		require_once '/../View/CompactList.php';
 		$list ='';
 		
-		
 		if (isset($_POST['listType']) && $_POST['listType'] === "CompactList"){
+			require_once '/../View/CompactList.php';
 			$list = $CompactList;
 		
 		} elseif (isset($_POST['listType']) && $_POST['listType'] === "CompleteList"){
+			require_once '/../View/CompleteList.php';
 			$list = $CompleteList;
 			
 		}
