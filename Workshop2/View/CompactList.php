@@ -21,7 +21,7 @@ foreach($entries as $val){
 }
 
 
-$CompleteList = <<<EOD
+$CompactList = <<<EOD
 
 <table>
 <caption><em>Show All Members</em></caption>

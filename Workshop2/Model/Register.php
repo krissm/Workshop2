@@ -19,7 +19,7 @@ class Register{
 	}
 
 	public function AddMember($entry) {
-		$this->db->ExecuteQuery('INSERT INTO MemberRegister (name, pn) VALUES (?), (?);', array($entry));
+		$this->db->ExecuteQuery('INSERT INTO MemberRegister (name, pn) VALUES (?, ?);', $entry);
 	}
 	
 	public function DeleteMember($entry) {

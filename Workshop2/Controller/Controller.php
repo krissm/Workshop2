@@ -1,6 +1,6 @@
 <?php
 require_once '/../Model/Register.php';
-require_once '/../View/ViewHelper';
+//require_once '/../View/ViewHelper';
 
 class Controller{
 	private $register;
@@ -11,7 +11,7 @@ class Controller{
 
 	public function Event(){
 		if (isset($_POST['AddNewMember'])){
-			require_once 'View/MemberDetails.php';
+			require_once '/../View/MemberDetails.php';
 			exit();
 		}
 
@@ -26,7 +26,7 @@ class Controller{
 			$this->register->DeleteMember($entry);
 		}
 		
-		if (isset($_POST['ReadMember'])){
+		if (isset($_POST['ViewMember'])){
 			$entry = array($_POST['id']);
 			$memberDetails = $this->register->ReadMember($entry);
 			//TODO: connect $memberDetails to some kind of view
@@ -62,9 +62,21 @@ class Controller{
 		
 
 		$entries = $this->register->ReadAllMembers();
-
-		require_once 'View/CompleteList.php';
-
+		
+		require_once '/../View/CompleteList.php';
+		require_once '/../View/CompactList.php';
+		$list ='';
+		
+		
+		if (isset($_POST['listType']) && $_POST['listType'] === "CompactList"){
+			$list = $CompactList;
+		
+		} elseif (isset($_POST['listType']) && $_POST['listType'] === "CompleteList"){
+			$list = $CompleteList;
+			
+		}
+		require_once '/../View/View.php';
+		
 	}
 	
 }
