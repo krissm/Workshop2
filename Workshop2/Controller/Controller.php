@@ -8,6 +8,10 @@ class Controller{
 		$this->register = new Register();
 	}
 
+	public function __destruct(){
+		$this->register->SaveAll();
+	}
+
 	public function GetMembers(){
 		return $this->register->GetMembers();
 	}
