@@ -36,7 +36,5 @@ $CompactList = <<<EOD
 </table>
 EOD;
 
-//populate a table with the content of the database columns-->
-
 
 ?>
