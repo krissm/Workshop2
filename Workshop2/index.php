@@ -17,4 +17,4 @@ $controller->Event();
 //TODO: login - user needs to be logged in to create, update, and delete information (members and boats). Anonymos users should still be able to view all info
 //TODO: search - use a design pattern ; show what needs to change in order to add a new search criterion (you don't have to implement)
 //TODO: search - use a design pattern for describing multiple search criterions
-//TODO: data validation - messages to the user  
+//TODO: data validation - messages to the user

@@ -2,17 +2,17 @@
 
 $rows = "";
 
-foreach($members as $val){
+foreach($this->GetMembers() as $member){
 	$rows .=
 
 	"<tr>
-	 <td> {$val['id']}   </td>
-	 <td> {$val['name']} </td>
-	 <td> {$val['pn']}   </td>
-	 <td> {$val['created']}   </td>
+	 <td> {$member->id}   </td>
+	 <td> {$member['name']} </td>
+	 <td> {$member['pn']}   </td>
+	 <td> {$member['created']}   </td>
 	 <td>
  		<form method='post'>
- 			<input name='id' hidden value='{$val['id']}'/>
+ 			<input name='id' hidden value='{$member['id']}'/>
  			<input type='submit' name='ViewMember' value='View/Edit'/>
  			<input type='submit' name='DeleteMember' value='Delete'/>
  		</form>

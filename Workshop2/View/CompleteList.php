@@ -9,16 +9,16 @@ foreach($members as $val){
 	 <td> {$val['id']}   </td>
 	 <td> {$val['name']} </td>
 	 <td> {$val['pn']}   </td>
-	 <td> 
+	 <td>
 	 <ol>";
-	
+
 	 foreach($boats as $boat){
 		 if($boat['mId'] === $val['id']){
 			 $rows .= "<li>Type: {$boat['type']}&nbsp;&nbsp;&nbsp;
 			 Length:{$boat['length']}</li>";
 		 }
 	 }
-	 
+
 	 $rows .= "</ol>
      </td>
 	 <td>
