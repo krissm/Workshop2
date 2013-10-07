@@ -2,7 +2,7 @@
 
 $rows = "";
 
-foreach($entries as $val){
+foreach($members as $val){
 	$rows .=
 
 	"<tr>
