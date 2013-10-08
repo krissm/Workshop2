@@ -14,7 +14,12 @@ class Register{
 	}
 
 	public function GetMembers(){
-		return $this->members;
+		$allMembers = array();
+		foreach($this->members as $member){
+			$allMembers[] = $member->ReadMember();
+		}
+
+		return $allMembers;
 	}
 
 	public function Init() {
@@ -34,23 +39,38 @@ class Register{
 	}
 
 	public function AddMember($entry) {
-		$this->db->ExecuteQuery('INSERT INTO MemberRegister (name, pn) VALUES (?, ?);', $entry);
+		$newMember = new Member();
+		$newMember->AddMember($this->db, $entry);
 	}
 
 	public function DeleteMember($entry) {
-		$this->db->ExecuteQuery('DELETE FROM MemberRegister WHERE id=(?);', $entry);
+		$member = new Member();
+		$member->DeleteMember($this->db, $entry);
 	}
 
 	public function EditMember($entry) {
-		$this->db->ExecuteQuery('UPDATE MemberRegister SET name=(?), pn=(?)  WHERE id=(?);', $entry);
+		$member = new Member();
+		$member->EditMember($this->db, $entry);
 	}
 
 	public function ReadMember($entry) {
-		return $this->db->ExecuteSelectQueryAndFetchAll('SELECT * FROM MemberRegister WHERE id=(?);', $entry);
+		foreach ($this->members as $memberObj){
+			$member = $memberObj->ReadMember();
+			if ($member['id'] === $entry[0]){
+				return $member;
+			}
+		}
+		//return $this->db->ExecuteSelectQueryAndFetchAll('SELECT * FROM MemberRegister WHERE id=(?);', $entry);
 	}
 
-	public function ReadBoat($entry) {
-		return $this->db->ExecuteSelectQueryAndFetchAll('SELECT * FROM BoatRegister WHERE mId=(?);', $entry);
+	public function ReadBoats($entry) {
+		foreach ($this->members as $memberObj){
+			$member = $memberObj->ReadMember();
+			if ($member['id'] === $entry[0]){
+				return $memberObj->ReadBoats();
+			}
+		}
+		//return $this->db->ExecuteSelectQueryAndFetchAll('SELECT * FROM BoatRegister WHERE mId=(?);', $entry);
 	}
 
 	public function AddBoat($entry) {
@@ -65,13 +85,17 @@ class Register{
 		$this->db->ExecuteQuery('DELETE FROM BoatRegister WHERE id=(?);', $entry);
 	}
 
+	/**
+	 * used in the constructor to create the member objects at each page load
+	 */
 	public function ReadAllMembers() {
 		return $this->db->ExecuteSelectQueryAndFetchAll('SELECT * FROM MemberRegister ORDER BY id DESC;');
 	}
 
+	/**
+	 * used in the constructor to create the boat objects at each page load
+	 */
 	public function ReadAllBoats() {
 		return $this->db->ExecuteSelectQueryAndFetchAll('SELECT * FROM BoatRegister ORDER BY id DESC;');
 	}
-
-
 }

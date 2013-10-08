@@ -2,14 +2,13 @@
 
 $rows = "";
 
-foreach($this->GetMembers() as $member){
+foreach($this->register->GetMembers() as $member){
 	$rows .=
 
 	"<tr>
-	 <td> {$member->id}   </td>
+	 <td> {$member['id']}   </td>
 	 <td> {$member['name']} </td>
 	 <td> {$member['pn']}   </td>
-	 <td> {$member['created']}   </td>
 	 <td>
  		<form method='post'>
  			<input name='id' hidden value='{$member['id']}'/>
@@ -29,7 +28,6 @@ $CompactList = <<<EOD
 <th>ID:</th>
 <th>Name:</th>
 <th>Personal Number:</th>
-<th>Member Since:</th>
 <th></th>
 </tr>
 {$rows}

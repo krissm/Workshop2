@@ -8,9 +8,9 @@ class Controller{
 		$this->register = new Register();
 	}
 
-	public function __destruct(){
-		$this->register->SaveAll();
-	}
+// 	public function __destruct(){
+// 		$this->register->SaveAll();
+// 	}
 
 	public function GetMembers(){
 		return $this->register->GetMembers();
@@ -36,7 +36,7 @@ class Controller{
 		if (isset($_POST['ViewMember'])){
 			$entry = array($_POST['id']);
 			$memberDetails = $this->register->ReadMember($entry);
-			$boatDetails = $this->register->ReadBoat($entry);
+			$boatDetails = $this->register->ReadBoats($entry);
 			require_once '/../View/MemberDetails.php';
 			exit();
 		}
@@ -96,5 +96,4 @@ class Controller{
 		require_once '/../View/View.php';
 
 	}
-
 }

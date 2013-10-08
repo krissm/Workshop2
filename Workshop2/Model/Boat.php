@@ -11,4 +11,13 @@ class Boat{
 		$this->type = $boat['type'];
 		$this->length = $boat['length'];
 	}
+
+	public function ReadBoat(){
+		//$boatData = array();
+		$boatData['id'] = $this->id;
+		$boatData['mId'] = $this->mId;
+		$boatData['type'] = $this->type;
+		$boatData['length'] = $this->length;
+		return $boatData;
+	}
 }

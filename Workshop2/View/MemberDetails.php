@@ -3,13 +3,13 @@
 		<legend>Membership</legend>
 
 		<label for="id">ID</label>
-		<input type="text" name="id" value="<?php if (isset($memberDetails)): ?><?php echo $memberDetails['0']['id']; ?><?php endif;?>"><br>
+		<input type="text" name="id" value="<?php if (isset($memberDetails)): ?><?php echo $memberDetails['id']; ?><?php endif;?>"><br>
 
 		<label for="name">Name</label>
-		<input type="text" name="name" value="<?php if (isset($memberDetails)): ?><?php echo $memberDetails['0']['name']; ?><?php endif;?>"><br>
+		<input type="text" name="name" value="<?php if (isset($memberDetails)): ?><?php echo $memberDetails['name']; ?><?php endif;?>"><br>
 
 		<label for="pn">Personal No.</label>
-		<input type="text" name="pn" value="<?php if (isset($memberDetails)): ?><?php echo $memberDetails['0']['pn']; ?><?php endif;?>"><br>
+		<input type="text" name="pn" value="<?php if (isset($memberDetails)): ?><?php echo $memberDetails['pn']; ?><?php endif;?>"><br>
 
 		<?php for ($i=0; isset($boatDetails[$i]) ; $i++): ?>
 			<h2>Boat <?php echo $i + 1; ?></h2>
