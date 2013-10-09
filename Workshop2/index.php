@@ -5,6 +5,8 @@ $controller = new Controller();
 
 $controller->Event();
 
+$controller->View();
+
 //TODO: add member and boat objects. connects boats to members through association rather than keys
 //TODO: test for wrong input
 //TODO:	add communcation diagrams to the application (over the two different view as well)

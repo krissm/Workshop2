@@ -3,7 +3,7 @@ require_once '/../Model/Register.php';
 
 class Controller{
 	private $register;
-
+	
 	public function __construct(){
 		$this->register = new Register();
 	}
@@ -12,21 +12,32 @@ class Controller{
 // 		$this->register->SaveAll();
 // 	}
 
-	public function GetMembers(){
-		return $this->register->GetMembers();
-	}
-
+	/**
+	 * 
+	 */
 	public function Event(){
+		$rc = new ReflectionClass($this->register);
+		foreach ($_POST as $key => $value){
+			$arguments[$key] = $value;
+			if($rc->hasMethod($key)) {
+				array_pop($arguments);
+				$argument = array($arguments);
+				//$controllerObj = $rc->newInstance();
+				$methodObj = $rc->getMethod($key);
+				$methodObj->invokeArgs($this->register, $argument);
+			}
+		}
+		
 		if (isset($_POST['AddNewMember'])){
 			require_once '/../View/MemberDetails.php';
 			exit();
 		}
 
-		if (isset($_POST['AddMember'])){
-			$entry[] = strip_tags($_POST['name']);
-			$entry[] = strip_tags($_POST['pn']);
-			$this->register->AddMember($entry);
-		}
+// 		if (isset($_POST['AddMember'])){
+// 			$entry[] = strip_tags($_POST['name']);
+// 			$entry[] = strip_tags($_POST['pn']);
+// 			$this->register->AddMember($entry);
+// 		}
 
 		if (isset($_POST['DeleteMember'])){
 			$entry = array($_POST['id']);
@@ -69,29 +80,17 @@ class Controller{
 			$this->register->DeleteBoat($entry);
 		}
 
-// 		if (isset($_POST['AddBoat'])){
-// 			$entry[] = strip_tags($_POST['id']);
-// 			$entry[] = strip_tags($_POST['type']);
-// 			$entry[] = strip_tags($_POST['length']);
-// 			$this->register->AddBoat($entry);
-// 		}
-
-		//$members = $this->register->ReadAllMembers();
-		//$boats = $this->register->ReadAllBoats();
 		$list ="";
-		$checked = "checked";
+		$checked = "unchecked";
 		$checked1 = "unchecked";
-
-		if (isset($_POST['listTypes']) && $_POST['listTypes'] === "CompactList"){
-			require_once '/../View/CompactList.php';
-			$list = $CompactList;
-			$checked = "checked";
-
-		} else {
+		if (isset($_POST['listTypes']) && $_POST['listTypes'] === "CompleteList"){
 			require_once '/../View/CompleteList.php';
 			$list = $CompleteList;
 			$checked1 = "checked";
-
+		} else {
+			require_once '/../View/CompactList.php';
+			$list = $CompactList;
+			$checked = "checked";
 		}
 		require_once '/../View/View.php';
 

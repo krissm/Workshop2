@@ -2,7 +2,7 @@
 
 $rows = "";
 
-foreach($this->register->GetMembers() as $member){
+foreach($this->register->ReadMembers() as $member){
 	$rows .=
 
 	"<tr>
