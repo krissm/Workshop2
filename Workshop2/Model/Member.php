@@ -1,11 +1,6 @@
 <?php
 require_once 'Boat.php';
-/**
- * there is no need to create, update, or delete member variables of member objects since they are recreated from 
- * the database at each page load anyway. But read is used to get data to present in the view.  
- * @author K
- *
- */
+
 class Member{
 	private $membershipNo;
 	private $name;
@@ -35,6 +30,7 @@ class Member{
 		$data['name'] = $this->name;
 		$data['pn'] = $this->pn;
 		$data['noOfBoats'] = count($this->boats);
+		$data['boats'] = $this->ReadBoats();
 		return $data;
 	}
 
@@ -56,21 +52,62 @@ class Member{
 
 	/**
 	 *
-	 * @param database hanler $db
+	 * @param database handler $db
 	 * @param parameters $entry
 	 */
 	public static function AddMember($db, $entry) {
 		$parameters = array($entry['name'], $entry['pn']);
 		$db->ExecuteQuery('INSERT INTO MemberRegister (name, pn) VALUES (?, ?);', $parameters);
+		$member = $db->ExecuteSelectQueryAndFetchAll('SELECT * FROM MemberRegister WHERE name=(?) AND pn=(?);', $parameters);
+		return new self($member[0]);
 	}
 	
-	public static function DeleteMember($db, $entry) {
-		$db->ExecuteQuery('DELETE FROM MemberRegister WHERE id=(?);', $entry);
+	/**
+	 * 
+	 * @param database handler $db
+	 * @param parameters $entry
+	 */
+	public function DeleteMember($db, $entry) {
+		$parameters = array($entry['id']);
+		$db->ExecuteQuery('DELETE FROM MemberRegister WHERE id=(?);', $parameters);
+		$db->ExecuteQuery('DELETE FROM BoatRegister WHERE mId=(?);', $parameters);
 	}
 	
-	public static function EditMember($db, $entry) {
-		$db->ExecuteQuery('UPDATE MemberRegister SET name=(?), pn=(?)  WHERE id=(?);', $entry);
+	public function EditMember($db, $entry) {
+		$parameters = array($entry['name'], $entry['pn'], $entry['id']);
+		$db->ExecuteQuery('UPDATE MemberRegister SET name=(?), pn=(?)  WHERE id=(?);', $parameters);
+		$this->name = $entry['name'];
+		$this->pn = $entry['pn'];
+		
+		for ($i=0; isset($entry['type'. $i]) ; $i++){
+			$boatParameters = array('type' => $entry['type'. $i], 'length' => $entry['length'. $i], 'id' => $entry['id'. $i]);
+			foreach ($this->boats as $boat){
+				if ($boat->GetId() === $boatParameters['id']){
+					$boat->EditBoat($db, $boatParameters);
+				}
+			}
+		}
+		
+		if (isset($entry['type']) && !empty($entry['type'])){
+			$parameters = array($entry['id'], $entry['type'], $entry['length']);
+			$this->boats[] = Boat::AddBoat($db, $parameters);
+		}
 	}
 	
-
+	public function GetMembershipNo(){
+		return $this->membershipNo;
+	}
+	
+	public function DeleteBoat($db, $entry){		
+		$boatnr = filter_var($entry['DeleteBoat'], FILTER_SANITIZE_NUMBER_INT);
+		$boatId = array($entry['id' . ($boatnr - 1)]);
+		$count = count($this->boats);
+		for ($i = 0; $i < $count; $i++){
+			if ($this->boats[$i]->GetId() === $boatId[0]){
+				$this->boats[$i]->DeleteBoat($db, $boatId);
+				unset($this->boats[$i]);
+			}
+		}
+	}
+	
 }

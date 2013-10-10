@@ -13,7 +13,6 @@ class Boat{
 	}
 
 	public function ReadBoat(){
-		//$boatData = array();
 		$boatData['id'] = $this->id;
 		$boatData['mId'] = $this->mId;
 		$boatData['type'] = $this->type;
@@ -21,15 +20,25 @@ class Boat{
 		return $boatData;
 	}
 	
-	public static function AddBoat($entry) {
-		$this->db->ExecuteQuery('INSERT INTO BoatRegister (mId, type, length) VALUES (?, ?, ?);', $entry);
+	public static function AddBoat($db, $entry) {
+		$db->ExecuteQuery('INSERT INTO BoatRegister (mId, type, length) VALUES (?, ?, ?);', $entry);
+		$boat = $db->ExecuteSelectQueryAndFetchAll('SELECT * FROM BoatRegister WHERE mId=(?) AND type=(?) AND length=(?);', $entry);
+		return new self($boat[0]);
 	}
 	
-	public static function EditBoat($entry) {
-		$this->db->ExecuteQuery('UPDATE BoatRegister SET type=(?), length=(?)  WHERE id=(?);', $entry);
+	public function EditBoat($db, $entry) {
+		$this->type = $entry['type'];
+		$this->length = $entry['length'];
+		$parameters = array($entry['type'], $entry['length'], $entry['id']);
+		$db->ExecuteQuery('UPDATE BoatRegister SET type=(?), length=(?)  WHERE id=(?);', $parameters);
 	}
 	
-	public static function DeleteBoat($entry) {
-		$this->db->ExecuteQuery('DELETE FROM BoatRegister WHERE id=(?);', $entry);
+	public function DeleteBoat($db, $entry) {
+		$db->ExecuteQuery('DELETE FROM BoatRegister WHERE id=(?);', $entry);
 	}
+	
+	public function GetId(){
+		return $this->id;
+	}
+	
 }

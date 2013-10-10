@@ -21,7 +21,7 @@
 			<label for="length<?php echo $i; ?>">Length: </label>
 			<input type="text" name="length<?php echo $i; ?>" value="<?php echo $boatDetails[$i]['length']; ?>"><br>
 
-			<input type="submit" name="DeleteBoat" value="Delete Boat <?php echo $i; ?>">
+			<input type="submit" name="DeleteBoat" value="Delete Boat <?php echo $i + 1; ?>">
 		<?php endfor; ?>
 
 
@@ -38,7 +38,7 @@
 			<label for="length">Length: </label>
 			<input type="text" name="length" value=""><br>
 
-			<input type="submit" name="EditMember" value="Edit Member">
+			<input type="submit" name="EditMember" value="Save">
 		<?php endif;?>
 	</fieldset>
 </form>

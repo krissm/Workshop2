@@ -9,7 +9,6 @@ class DatabaseHandler {
 	private $stmt = null;
 	private static $queries = array();
 
-
 	/**
 	 * Constructor
 	 */
@@ -18,7 +17,6 @@ class DatabaseHandler {
 		$this->db->SetAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	}
 
-
 	/**
 	 * Set an attribute on the database
 	 */
@@ -26,9 +24,7 @@ class DatabaseHandler {
 		return $this->db->setAttribute($attribute, $value);
 	}
 
-
 	public function GetQueries() { return self::$queries; }
-
 
 	/**
 	 * Execute a select-query with arguments and return the resultset.
@@ -39,7 +35,6 @@ class DatabaseHandler {
 		$this->stmt->execute($params);
 		return $this->stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
-
 
 	/**
 	 * Execute a SQL-query and ignore the resultset.
@@ -56,6 +51,5 @@ class DatabaseHandler {
 	public function RowCount() {
 		return is_null($this->stmt) ? $this->stmt : $this->stmt->rowCount();
 	}
-
 
 }
