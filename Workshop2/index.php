@@ -1,11 +1,14 @@
 <?php
 require_once 'Controller/Controller.php';
+require_once 'Model/Register.php';
+require_once 'View/RenderView.php';
 
 $controller = new Controller();
+$model = new Register();
+$view = new RenderView($controller->Event($model, "ReadMembers"));
 
-$controller->Event();
-
-$controller->View();
+$view->RenderView();
+//$controller->View();
 
 //TODO: test for wrong input
 //TODO: hide and read only id fields

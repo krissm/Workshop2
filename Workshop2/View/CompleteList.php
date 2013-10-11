@@ -1,24 +1,17 @@
 <?php
-
 $rows = "";
-
 foreach($members as $member){
 	$rows .=
-
 	"<tr>
-	 <td> {$member['id']}   </td>
-	 <td> {$member['name']} </td>
-	 <td> {$member['pn']}   </td>
+	 <td> {$member['id']}</td>
+	 <td> {$member['name']}</td>
+	 <td> {$member['pn']}</td>
 	 <td>
 	 <ol>";
-
 	 foreach($member['boats']  as $boat){
-		 if($boat['mId'] === $member['id']){
-			 $rows .= "<li>Type: {$boat['type']}&nbsp;&nbsp;&nbsp;
-			 Length:{$boat['length']}</li>";
-		 }
+		 $rows .= "<li>Type: {$boat['type']}&nbsp;&nbsp;&nbsp;
+		 Length:{$boat['length']}</li>";
 	 }
-
 	 $rows .= "</ol>
      </td>
 	 <td>
@@ -28,12 +21,10 @@ foreach($members as $member){
  			<input type='submit' name='DeleteMember' value='Delete'/>
  		</form>
   	</td>
-	<tr>";
+	</tr>";
 }
 
-
 $CompleteList = <<<EOD
-
 <table>
 <caption><em>Show All Members</em></caption>
 <tr>

@@ -51,9 +51,10 @@ class Member{
 	}
 
 	/**
-	 *
+	 * Static so that you can call the method before the object is initialized
 	 * @param database handler $db
 	 * @param parameters $entry
+	 * @return a Member object
 	 */
 	public static function AddMember($db, $entry) {
 		$parameters = array($entry['name'], $entry['pn']);

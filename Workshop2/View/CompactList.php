@@ -1,10 +1,7 @@
 <?php
-
 $rows = "";
-
 foreach($members as $member){
 	$rows .=
-
 	"<tr>
 	 <td> {$member['id']}</td>
 	 <td> {$member['name']}</td>
@@ -17,19 +14,17 @@ foreach($members as $member){
  			<input type='submit' name='DeleteMember' value='Delete'/>
  		</form>
   	</td>
-	<tr>";
+	</tr>";
 }
 
-
 $CompactList = <<<EOD
-
 <table>
 <caption><em>Show All Members</em></caption>
 <tr>
 <th>ID:</th>
 <th>Name:</th>
 <th>Personal Number:</th>
-<th>Number of Boats:</th>
+<th>Boats:</th>
 <th></th>
 </tr>
 {$rows}
