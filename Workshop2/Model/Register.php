@@ -1,13 +1,13 @@
 <?php
 require_once('/../DatabaseHandler.php');
-require_once 'Member.php';
+require_once('Member.php');
 
 class Register{
 	private $members = array();
 	private $db;
 
 	public function __construct(){
-		$this->db = new DatabaseHandler('sqlite:W1.sqlite');
+		$this->db = new DatabaseHandler('sqlite:data/W1.sqlite');
 		$this->InitDBTables();
 		$this->InitMemberObjects();
 	}

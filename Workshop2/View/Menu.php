@@ -5,7 +5,6 @@ function userLoginMenu() {
 	// array with all menu items
 	$menu = array(
 		"login"   => "index.php?p=login",
-		"status"  => "index.php",
 		"logout"  => "index.php?p=logout",
 	);
 
@@ -13,7 +12,6 @@ function userLoginMenu() {
 	if(isset($_SESSION['authenticated']) && $_SESSION['authenticated']) {
 		unset($menu['login']);
 	} else {
-		unset($menu['status']);
 		unset($menu['logout']);
 	}
 

@@ -25,7 +25,7 @@ class LoginForm{
 		$disabledInfo = null;
 		if(isset($_SESSION['authenticated']) && $_SESSION['authenticated']) {
 			$disabled = "disabled";
-			$disabledInfo = "<em class='quiet small'>You are logged in, you have to <a href='?p=logout'>log out</a> before you can log in.</em>";
+			//$disabledInfo = "<em class='quiet small'>You are logged in, you have to <a href='?p=logout'>log out</a> before you can log in.</em>";
 		}
 	
 		$html = <<<EOD
