@@ -21,8 +21,13 @@
 				<input type="text" style="display:none;" name="id<?php echo $i; ?>" value="<?php echo $boatDetails[$i]['id']; ?>"><br>
 	
 				<label for="type<?php echo $i; ?>">Type: </label>
-				<input type="text" name="type<?php echo $i; ?>" value="<?php echo $boatDetails[$i]['type']; ?>"><br>
-	
+				<select name='type<?php echo $i; ?>'>
+					<option value='sailboat' <?php if($boatDetails[$i]['type'] == 'sailboat'): ?> selected="selected"<?php endif; ?>>Sailboat</option>
+					<option value='motorboat' <?php if($boatDetails[$i]['type'] == 'motorboat'): ?> selected="selected"<?php endif; ?>>Motorboat</option>
+					<option value='kayak' <?php if($boatDetails[$i]['type'] == 'kayak'): ?> selected="selected"<?php endif; ?>>Kayak or Canoe</option>
+					<option value='other' <?php if($boatDetails[$i]['type'] == 'other'): ?> selected="selected"<?php endif; ?>>Other</option>
+				</select>
+				
 				<label for="length<?php echo $i; ?>">Length: </label>
 				<input type="text" name="length<?php echo $i; ?>" value="<?php echo $boatDetails[$i]['length']; ?>"><br>
 	
@@ -31,7 +36,14 @@
 
 			<h2>New Boat</h2>
 			<label for="type">Type: </label>
-			<input type="text" name="type" value=""><br>
+				<select name='type'>
+				    <option value=-1>Select Boat Type</option>
+					<option value='sailboat'>Sailboat</option>
+					<option value='motorboat'>Motorboat</option>
+					<option value='kayak'>Kayak or Canoe</option>
+					<option value='other'>Other</option>
+				
+				</select>
 
 			<label for="length">Length: </label>
 			<input type="text" name="length" value=""><br>

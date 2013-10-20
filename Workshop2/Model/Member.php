@@ -89,7 +89,7 @@ class Member{
 			}
 		}
 		
-		if (isset($entry['type']) && !empty($entry['type'])){
+		if (isset($entry['type']) && !empty($entry['type']) && $entry['type'] !== '-1'){
 			$parameters = array($entry['id'], $entry['type'], $entry['length']);
 			$this->boats[] = Boat::AddBoat($db, $parameters);
 		}

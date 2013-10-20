@@ -1,8 +1,8 @@
 <?php
 require_once 'Controller/Controller.php';
 require_once 'Model/Register.php';
-require_once 'View/RenderView.php';
-require_once 'View/Login.php';
+require_once 'View/View.php';
+require_once 'View/LoginForm.php';
 require_once 'Model/Login.php';
 
 session_start();
@@ -17,7 +17,7 @@ if (isset($_GET['p'])) {
 }
 
 $model = new Register();
-$view = new RenderView($controller->Event($model, "ReadMembers"));
+$view = new View($controller->Event($model, "ReadMembers"));
 $view->RenderView();
 
 //$controller->View();
