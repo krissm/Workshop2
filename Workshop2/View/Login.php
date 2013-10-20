@@ -116,9 +116,9 @@ EOD;
 	//
 	// Generate a password
 	//
-	function userPassword($password) {
-		return sha1($password);
-	}
+// 	function userPassword($password) {
+// 		return sha1($password);
+// 	}
 	
 	public function RenderLogin(){
 		// Check if the url contains a querystring with a page-part.
