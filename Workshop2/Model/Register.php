@@ -43,7 +43,7 @@ class Register{
 	}
 
 	public function ViewMember($entry){
-		return $data = array("memberDetails" => $this->ReadMember($entry), "boatDetails" => $this->ReadBoats($entry));
+		return $data = array("memberDetails" => $this->ReadMember($entry)); 
 	}
 	
 	private function ReadMember($entry) {
@@ -51,14 +51,6 @@ class Register{
 			$member = $memberObj->ReadMember();
 			if ($member['id'] === $entry['id']){
 				return $member;
-			}
-		}
-	}
-
-	private function ReadBoats($entry) {
-		foreach ($this->members as $memberObj){
-			if ($memberObj->GetMembershipNo() === $entry['id']){
-				return $memberObj->ReadBoats();
 			}
 		}
 	}

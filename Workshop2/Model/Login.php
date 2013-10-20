@@ -20,9 +20,4 @@ class loginModel{
 			return false;
 		}
 	}
-
 }
-
-// account and password that can login
-// $userAccount = "doe";
-// $userPassword = userPassword("doe");

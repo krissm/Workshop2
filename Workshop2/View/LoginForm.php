@@ -9,8 +9,12 @@ class LoginForm{
 		}		
 	}
 	
-	// Get login-form
-	//
+	/**
+	 * Get login-form
+	 * @param string $output 
+	 * @param string $outputClass
+	 * @return string
+	 */
 	function userLoginForm($output=null, $outputClass=null) {
 	
 		if(isset($output)) {
@@ -50,21 +54,11 @@ EOD;
 	}
 	
 	
-	// -------------------------------------------------------------------------------------------
-	//
-	// Login the user
-	//
+	/**
+	 * Login the user
+	 * @return string
+	 */
 	function userLogin() {
-		
-// 		global $userAccount, $userPassword;
-		
-// 		// account and password that can login
-// 		$userAccount = "doe";
-// 		$userPassword = $this->userPassword("doe");
-		
-		// if form is submitted then try to login
-		// $_POST['doLogin'] is related to the name of the login-button
-		
 		$output=null;
 		$outputClass=null;
 		
@@ -78,47 +72,15 @@ EOD;
 		}
 		return $this->userLoginForm($output, $outputClass);
 	}
-		
-		
-		
-// 		if(isset($_POST['doLogin'])) {
-	
-// 			// does account and password match?
-// 			if($userAccount === $_POST['account'] && $userPassword === $this->userPassword($_POST['password'])) {
-// 				$output = "You are logged in. The menu in the top-right corner has changed.";
-// 				$outputClass = "success";
-// 				$_SESSION['authenticated'] = true;
-				
-// 				//$location = $_SERVER['SERVER_NAME'] . $_SERVER['SCRIPT_NAME'];
-				
-// 				header('Location: http://localhost/Workshop2/Workshop2/index.php');
-// 			} else {
-// 				$output = "Login failed. Wrong Account or Password.";
-// 				$outputClass = "error";
-// 			}
-//		}
-	
-// 		return $this->userLoginForm($output, $outputClass);
-	
-	
-	// -------------------------------------------------------------------------------------------
-	//
-	// Logout the user
-	//
+			
+	/**
+	 * Logout the user
+	 */
 	function userLogout() {
 		unset($_SESSION['authenticated']);
 		header('Location: http://localhost/Workshop2/Workshop2/index.php');
 		//return "<h1>Logged Out</h1><p>You have logged out.</p>";
 	}
-	
-	
-	// -------------------------------------------------------------------------------------------
-	//
-	// Generate a password
-	//
-// 	function userPassword($password) {
-// 		return sha1($password);
-// 	}
 	
 	public function RenderLogin(){
 		// Check if the url contains a querystring with a page-part.

@@ -16,20 +16,20 @@
 		<?php endif;?>
 		
 		<?php if (isset($_POST['ViewMember'])): ?>
-			<?php for ($i=0; isset($boatDetails[$i]) ; $i++): ?>
+			<?php for ($i=0; isset($memberDetails['boats'][$i]) ; $i++): ?>
 				<h2>Boat <?php echo $i + 1; ?></h2>
-				<input type="text" style="display:none;" name="id<?php echo $i; ?>" value="<?php echo $boatDetails[$i]['id']; ?>"><br>
+				<input type="text" style="display:none;" name="id<?php echo $i; ?>" value="<?php echo $memberDetails['boats'][$i]['id']; ?>"><br>
 	
 				<label for="type<?php echo $i; ?>">Type: </label>
 				<select name='type<?php echo $i; ?>'>
-					<option value='sailboat' <?php if($boatDetails[$i]['type'] == 'sailboat'): ?> selected="selected"<?php endif; ?>>Sailboat</option>
-					<option value='motorboat' <?php if($boatDetails[$i]['type'] == 'motorboat'): ?> selected="selected"<?php endif; ?>>Motorboat</option>
-					<option value='kayak' <?php if($boatDetails[$i]['type'] == 'kayak'): ?> selected="selected"<?php endif; ?>>Kayak or Canoe</option>
-					<option value='other' <?php if($boatDetails[$i]['type'] == 'other'): ?> selected="selected"<?php endif; ?>>Other</option>
+					<option value='sailboat' <?php if($memberDetails['boats'][$i]['type'] == 'sailboat'): ?> selected="selected"<?php endif; ?>>Sailboat</option>
+					<option value='motorboat' <?php if($memberDetails['boats'][$i]['type'] == 'motorboat'): ?> selected="selected"<?php endif; ?>>Motorboat</option>
+					<option value='kayak' <?php if($memberDetails['boats'][$i]['type'] == 'kayak'): ?> selected="selected"<?php endif; ?>>Kayak or Canoe</option>
+					<option value='other' <?php if($memberDetails['boats'][$i]['type'] == 'other'): ?> selected="selected"<?php endif; ?>>Other</option>
 				</select>
 				
 				<label for="length<?php echo $i; ?>">Length: </label>
-				<input type="text" name="length<?php echo $i; ?>" value="<?php echo $boatDetails[$i]['length']; ?>"><br>
+				<input type="text" name="length<?php echo $i; ?>" value="<?php echo $memberDetails['boats'][$i]['length']; ?>"><br>
 	
 				<input type="submit" name="DeleteBoat" value="Delete Boat <?php echo $i + 1; ?>">
 			<?php endfor; ?>
