@@ -1,4 +1,6 @@
 <?php
+$disabled = isset($_SESSION['authenticated']) ? "" : "disabled";
+
 $rows = "";
 foreach($members as $member){
 	$rows .=
@@ -10,8 +12,8 @@ foreach($members as $member){
 	 <td>
  		<form method='post'>
  			<input name='id' hidden value='{$member['id']}'/>
- 			<input type='submit' name='ViewMember' value='View/Edit'/>
- 			<input type='submit' name='DeleteMember' value='Delete'/>
+ 			<input $disabled type='submit' name='ViewMember' value='View/Edit'/>
+ 			<input $disabled type='submit' name='DeleteMember' value='Delete'/>
  		</form>
   	</td>
 	</tr>";
